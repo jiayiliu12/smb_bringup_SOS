@@ -32,7 +32,8 @@ class SOS_Node(Node):
         self.get_logger().info('Challenge node started!')
         
         self.finished = False
-        
+
+        self.timer = self.create_timer(5*60.0, self.timer_callback)
         # self.subscription_exploration  # prevent unused variable warning
 
     def publish_goal_point(self, msg):
@@ -41,9 +42,12 @@ class SOS_Node(Node):
 
     def exploration_finished_callback(self, msg):
         if msg.data:
-            self.get_logger().info('Exploration finished!!!!!!!')
+            self.get_logger().info('Exploration finished (Actually finished)!')
             self.finished = True
+        if self.finished:
             msg = PointStamped()
+            # msg.point.x = 3.0
+            # msg.point.y = 4.0
             msg.header.frame_id = "map"
             self.publish_goal_point(msg)
 
@@ -51,6 +55,11 @@ class SOS_Node(Node):
         if not self.finished:
             self.publish_goal_point(msg)
             self.get_logger().info('Tare callback: forwarding tare waypoint!')
+
+    def timer_callback(self):
+        self.get_logger().info('Exploration finished (Time Limit)!')
+        self.finished = True
+        self.timer.cancel()
 
 
 
