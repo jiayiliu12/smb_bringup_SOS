@@ -8,17 +8,18 @@
   <author email="pankertj@ethz.ch">Johannes Pankert</author>
   
   <license>Proprietary</license>
-
   <!-- Use ament_cmake as the build system -->
   <buildtool_depend>ament_cmake</buildtool_depend>
-
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
   <!-- Dependencies -->
   <depend>odometry_conversion</depend>
   <depend>smb_sensors</depend>
   <depend>smb_control</depend>
   <depend>smb_lowlevel_controller</depend>
   <depend>smb_opc</depend>
-
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>rclpy</depend>
   <!-- Export section -->
   <export>
     <build_type>ament_cmake</build_type>
