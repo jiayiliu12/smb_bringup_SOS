@@ -154,8 +154,6 @@ def generate_launch_description():
             "use_sim_time": use_sim_time
         }.items(),
     )
-
-    
     
     twist_pid = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -225,5 +223,5 @@ def generate_launch_description():
         twist_mux,
         rviz2,
         exploration_launch,
-        challenge,
+        # challenge,
     ])

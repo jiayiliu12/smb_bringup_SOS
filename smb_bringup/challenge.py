@@ -15,11 +15,11 @@ class SOS_Node(Node):
     def __init__(self):
         super().__init__('sos_node')
 
-        self.publisher_ = self.create_publisher(PointStamped, '/waypoint', 10)
+        self.publisher_ = self.create_publisher(PointStamped, '/way_point', 10)
 
         self.subscription_exploration = self.create_subscription(
             Bool,
-            '/exploration_finished',
+            '/exploration_finish',
             self.exploration_finished_callback,
             10)
         
@@ -28,6 +28,8 @@ class SOS_Node(Node):
             '/tare_waypoint',
             self.tare_waypoint_callback,
             10)
+        
+        self.get_logger().info('Challenge node started!')
         
         self.finished = False
         
